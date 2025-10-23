@@ -21,6 +21,6 @@
   "scripts": {
     "start": "node dist/main.js",
     "start:dev": "nest start --watch",
-    "build": "nest build"
+    "build": "npx nest build"
   }
 }
