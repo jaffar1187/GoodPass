@@ -33,7 +33,6 @@ let MakePaymentService = class MakePaymentService {
         else {
             baseUrl = this.configService.get("SERVER_HOST");
         }
-        console.log("::::::Base url::::", baseUrl);
         const options = {
             method: "GET",
             url: `${baseUrl}/api/retrieveBookingDetails?orderCode=${orderCode}`,
