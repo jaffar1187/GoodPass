@@ -36,8 +36,7 @@ async function runServer() {
   const configService = app.get(ConfigService);
 
   // ✅ Either from ConfigService or directly from process.env
-  const env = configService.get("NODE_ENV");
-  let port = env === "DEVELOPMENT" ? configService.get("DEV_PORT") : 3000;
+  let port = configService.get("PORT") || 3000;
 
   await app.listen(port);
   console.log(`🚀 Server running on http://localhost:${port}`);

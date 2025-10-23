@@ -26,7 +26,7 @@ export class MakePaymentService {
     if (env === "DEVELOPMENT") {
       baseUrl = this.configService.get("LOCAL_HOST");
     } else {
-      baseUrl = this.configService.get("SERVER_HOST");
+      baseUrl = this.configService.get("HOST");
     }
 
     const options = {
