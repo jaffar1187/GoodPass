@@ -22,7 +22,7 @@ async function runServer() {
     }));
     // For signature verification adding extra step.
     app.use("/webhook", body_parser_1.default.raw({ type: "application/json" }));
-    // Equivalent of express.json() for other routes
+    // Equivalent of express.json() for other routes.
     app.use(body_parser_1.default.json());
     // Base route equivalent
     app.getHttpAdapter().get("/", (req, res) => {
