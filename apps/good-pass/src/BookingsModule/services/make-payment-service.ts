@@ -1,10 +1,16 @@
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import axios from "axios";
 import { ConfigService } from "@nestjs/config";
+import { RetrieveBookingDetailsService } from "./retrieve-booking-details-service";
+import { GtClientService } from "./gt-client-reserve-booking-service";
 
 @Injectable()
 export class MakePaymentService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly retrieveBookingDetailsService: RetrieveBookingDetailsService,
+    private readonly gtClientService: GtClientService
+  ) {}
 
   async makePayment(
     orderCode: string,
@@ -27,6 +33,24 @@ export class MakePaymentService {
 
     try {
       const { data } = await axios.request(options);
+      const { ...reserveBookingData } =
+        await this.retrieveBookingDetailsService.retrieveBookingDetails(
+          orderCode,
+          token
+        );
+
+      if (!reserveBookingData.name || !reserveBookingData.email) {
+        throw new HttpException(
+          { message: "Customer name and email not found." },
+          HttpStatus.BAD_REQUEST
+        );
+      }
+
+      await this.gtClientService.reserveBooking({
+        customerName: reserveBookingData.name,
+        email: reserveBookingData.email,
+      });
+
       return { data };
     } catch (error: any) {
       if (
