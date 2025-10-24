@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class GtService {
+export class ReserveBookingService {
   reserveBooking(data: any) {
     // Your booking processing logic here
     console.log("Processing booking:", data);

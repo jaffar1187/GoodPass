@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { GtService } from "./gt-service.service";
-import { GtServiceController } from "./gt-service.controller";
+import { ReserveBookingService } from "./services/reserve-booking-service";
+import { ReserveBookingController } from "./controllers/reserve-booking-controller";
 
 @Module({
   imports: [
@@ -10,8 +10,8 @@ import { GtServiceController } from "./gt-service.controller";
       envFilePath: ".env", // loads apps/gt-service/.env
     }),
   ],
-  controllers: [GtServiceController],
-  providers: [GtService],
-  exports: [GtService],
+  controllers: [ReserveBookingController],
+  providers: [ReserveBookingService],
+  exports: [ReserveBookingService],
 })
 export class AppModule {}
