@@ -17,11 +17,17 @@
   "devDependencies": {
     "@types/body-parser": "^1.19.6",
     "@types/express": "^5.0.3",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.1"
   },
   "scripts": {
-    "start": "node dist/main.js",
-    "start:dev": "nest start --watch",
-    "build": "nest build"
+    "start:good-pass": "nest start good-pass --watch",
+    "start:gt": "nest start gt-service --watch",
+    "build:good-pass": "nest build good-pass",
+    "build:gt": "nest build gt-service",
+    "start": "node dist/apps/good-pass/main.js",
+    "start:gt:prod": "node dist/apps/gt-service/main.js"
   }
 }
