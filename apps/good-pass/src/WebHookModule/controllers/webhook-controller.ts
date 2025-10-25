@@ -50,6 +50,8 @@ export class WebhookController {
       // ✅ Forward enriched payload to service
       const result = await this.webhookService.processWebhook(body);
 
+      console.log("::::Confirm-booking-data:::", result);
+
       return {
         statusCode: HttpStatus.OK,
         success: true,
