@@ -11,13 +11,16 @@ export const redis = new Redis({
 });
 
 // ✅ Optional helper functions (reusable anywhere)
-export const setCache = async (key: string, value: any, ttlSeconds = 3600) => {
-  await redis.set(key, JSON.stringify(value), { ex: ttlSeconds });
+export const setCache = async (
+  key: string,
+  value: string,
+  ttlSeconds = 3600
+) => {
+  await redis.set(key, value, { ex: ttlSeconds }); // ✅ store as plain string
 };
 
-export const getCache = async <T = any>(key: string): Promise<T | null> => {
-  const data = await redis.get<string>(key);
-  return data ? JSON.parse(data) : null;
+export const getCache = async (key: string): Promise<string | null> => {
+  return await redis.get<string>(key); // ✅ return plain string
 };
 
 export const deleteCache = async (key: string) => {
