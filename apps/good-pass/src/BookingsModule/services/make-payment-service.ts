@@ -33,24 +33,6 @@ export class MakePaymentService {
 
     try {
       const { data } = await axios.request(options);
-      const { ...reserveBookingData } =
-        await this.retrieveBookingDetailsService.retrieveBookingDetails(
-          orderCode,
-          token
-        );
-
-      if (!reserveBookingData.name || !reserveBookingData.email) {
-        throw new HttpException(
-          { message: "Customer name and email not found." },
-          HttpStatus.BAD_REQUEST
-        );
-      }
-
-      await this.gtClientService.reserveBooking({
-        customerName: reserveBookingData.name,
-        email: reserveBookingData.email,
-      });
-
       return { data };
     } catch (error: any) {
       if (

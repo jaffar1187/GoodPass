@@ -17,9 +17,8 @@ export class ReserveBookingService {
       },
       data: reserveBookingData,
     };
+
     const { data } = await axios.request(options);
-    // Your booking processing logic here
-    console.log("Processing booking:", data);
     return { status: "success", received: data };
   }
 }

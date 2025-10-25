@@ -42,7 +42,6 @@ export class MakePaymentController {
       token = token.slice(7).trim(); // remove “Bearer ”
     }
 
-    // ✅ Pass the entire validated DTO and token to your service
     const data = await this.makePaymentService.makePayment(
       orderCode,
       successUrl,
@@ -96,7 +95,7 @@ export class MakePaymentController {
       }
     );
 
-    console.log(":::::ticketTypes::::::", ticketTypes);
+    // console.log(":::::ticketTypes::::::", ticketTypes);
 
     const reserveBooking = await this.gtClientService.reserveBooking({
       ticketTypes: ticketTypes,
