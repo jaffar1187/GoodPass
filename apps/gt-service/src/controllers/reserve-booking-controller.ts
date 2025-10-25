@@ -7,8 +7,8 @@ export class ReserveBookingController {
   constructor(private readonly reserveBookingService: ReserveBookingService) {}
 
   @MessagePattern({ cmd: "reserve_booking" })
-  handleBooking(data: any) {
+  async handleBooking(data: any) {
     console.log("📦 Received booking data from good-pass:", data);
-    return this.reserveBookingService.reserveBooking(data);
+    return await this.reserveBookingService.reserveBooking(data);
   }
 }

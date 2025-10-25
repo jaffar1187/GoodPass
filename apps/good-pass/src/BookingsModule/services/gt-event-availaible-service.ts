@@ -8,7 +8,7 @@ import { ConfigService } from "@nestjs/config";
 import { firstValueFrom } from "rxjs";
 
 @Injectable()
-export class GtClientService implements OnModuleInit {
+export class GtEventAvailaibleService implements OnModuleInit {
   private client!: ClientProxy;
 
   constructor(private readonly configService: ConfigService) {}
@@ -23,9 +23,9 @@ export class GtClientService implements OnModuleInit {
     });
   }
 
-  async reserveBooking(data: any) {
+  async eventAvailaibleCheck(data: any) {
     return await firstValueFrom(
-      this.client.send({ cmd: "reserve_booking" }, data)
+      this.client.send({ cmd: "event_availability" }, data)
     );
   }
 }

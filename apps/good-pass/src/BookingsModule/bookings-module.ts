@@ -15,7 +15,7 @@ import { UpdateCustomerDetailsService } from "./services/update-customer-details
 import { RetrieveBookingDetailsService } from "./services/retrieve-booking-details-service";
 import { MakePaymentService } from "./services/make-payment-service";
 import { GtClientService } from "./services/gt-client-reserve-booking-service";
-
+import { GtEventAvailaibleService } from "./services/gt-event-availaible-service";
 @Module({
   controllers: [
     GetAvailableDatesController,
@@ -33,6 +33,7 @@ import { GtClientService } from "./services/gt-client-reserve-booking-service";
     RetrieveBookingDetailsService,
     MakePaymentService,
     GtClientService,
+    GtEventAvailaibleService,
   ],
 })
 export class BookingsModule {}

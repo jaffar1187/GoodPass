@@ -3,6 +3,9 @@ import { ConfigModule } from "@nestjs/config";
 import { ReserveBookingService } from "./services/reserve-booking-service";
 import { ReserveBookingController } from "./controllers/reserve-booking-controller";
 
+import { EventAvailaibleController } from "./controllers/event-availaible-controller";
+import { EventAvailaibleService } from "./services/event-availaible-service";
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -10,8 +13,7 @@ import { ReserveBookingController } from "./controllers/reserve-booking-controll
       envFilePath: ".env", // loads apps/gt-service/.env
     }),
   ],
-  controllers: [ReserveBookingController],
-  providers: [ReserveBookingService],
-  exports: [ReserveBookingService],
+  controllers: [ReserveBookingController, EventAvailaibleController],
+  providers: [ReserveBookingService, EventAvailaibleService],
 })
 export class AppModule {}

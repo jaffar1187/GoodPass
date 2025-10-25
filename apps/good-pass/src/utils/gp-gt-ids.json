@@ -1,0 +1,150 @@
+[
+  {
+    "productId": "660fcaf1cbb7564c4ec99c19",
+    "supplierMappings": {
+      "globaltix": "57"
+    },
+    "slots": [
+      {
+        "slotId": "67e31e22985b16ccf14feea3",
+        "options": [
+          {
+            "optionId": "681c5199ef80216aa3ba15da",
+            "items": [
+              {
+                "itemId": "681c51b5ef80216aa3ba1683",
+                "name": "Adult",
+                "supplierMappings": {
+                  "globaltix": "253940"
+                }
+              },
+              {
+                "itemId": "681c5203ef80216aa3ba1dd1",
+                "name": "Child",
+                "supplierMappings": {
+                  "globaltix": "253941"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "productId": "6617a2339d80184b762b7246",
+    "supplierMappings": {
+      "globaltix": "674"
+    },
+    "slots": [
+      {
+        "slotId": "67e3203c985b16ccf15101f8",
+        "options": [
+          {
+            "optionId": "68f33342fb1695584d9aa1f4",
+            "items": [
+              {
+                "itemId": "68f33272fb1695584d9a9f9f",
+                "name": "Adult",
+                "supplierMappings": {
+                  "globaltix": "199846"
+                }
+              },
+              {
+                "itemId": "68f33282fb1695584d9aa02b",
+                "name": "Child",
+                "supplierMappings": {
+                  "globaltix": "199847"
+                }
+              },
+              {
+                "itemId": "68f33291fb1695584d9aa05f",
+                "name": "Senior",
+                "supplierMappings": {
+                  "globaltix": "199848"
+                }
+              }
+            ]
+          },
+          {
+            "optionId": "68f33ed1fb1695584d9aba15",
+            "items": [
+              {
+                "itemId": "68f33272fb1695584d9a9f9f",
+                "name": "Adult",
+                "supplierMappings": {
+                  "globaltix": "203874"
+                }
+              },
+              {
+                "itemId": "68f33282fb1695584d9aa02b",
+                "name": "Child",
+                "supplierMappings": {
+                  "globaltix": "203875"
+                }
+              },
+              {
+                "itemId": "68f33291fb1695584d9aa05f",
+                "name": "Senior",
+                "supplierMappings": {
+                  "globaltix": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "productId": "660e365a141404e9bcd8005c",
+    "supplierMappings": {
+      "globaltix": "3266"
+    },
+    "slots": [
+      {
+        "slotId": "67e31fed985b16ccf150cb8f",
+        "options": [
+          {
+            "optionId": "683fd7d7ab48a57c55bda71a",
+            "items": [
+              {
+                "itemId": "683fd774ab48a57c55bda5b1",
+                "name": "Adult",
+                "supplierMappings": {
+                  "globaltix": "235394"
+                }
+              },
+              {
+                "itemId": "683fd789ab48a57c55bda623",
+                "name": "Child",
+                "supplierMappings": {
+                  "globaltix": "235395"
+                }
+              }
+            ]
+          },
+          {
+            "optionId": "683fd839ab48a57c55bda927",
+            "items": [
+              {
+                "itemId": "683fd774ab48a57c55bda5b1",
+                "name": "Adult",
+                "supplierMappings": {
+                  "globaltix": "150916"
+                }
+              },
+              {
+                "itemId": "683fd789ab48a57c55bda623",
+                "name": "Child",
+                "supplierMappings": {
+                  "globaltix": "150917"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

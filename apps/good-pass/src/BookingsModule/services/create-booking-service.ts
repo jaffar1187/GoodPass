@@ -19,6 +19,7 @@ export class CreateBookingService {
       const { data } = await axios.request(options);
       return data;
     } catch (error) {
+      console.log(error);
       throw new HttpException(
         "Failed to do booking, Please try after sometime.",
         HttpStatus.BAD_REQUEST
