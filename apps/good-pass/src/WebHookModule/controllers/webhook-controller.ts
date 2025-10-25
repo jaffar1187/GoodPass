@@ -12,7 +12,9 @@ export class WebhookController {
   constructor(private readonly webhookService: WebhookService) {}
 
   @Post()
-  async handleWebhook(@Body() body: any) {
+  async handleWebhook(body: any) {
+    console.log("📩 Webhook received....");
+
     try {
       const result = await this.webhookService.processWebhook(body);
       return {
