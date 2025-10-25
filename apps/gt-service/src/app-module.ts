@@ -6,6 +6,9 @@ import { ReserveBookingController } from "./controllers/reserve-booking-controll
 import { EventAvailaibleController } from "./controllers/event-availaible-controller";
 import { EventAvailaibleService } from "./services/event-availaible-service";
 
+import { ConfirmBookingController } from "./controllers/confirm-booking-controller";
+import { ConfirmBookingService } from "./services/confirm-booking-service";
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -13,7 +16,15 @@ import { EventAvailaibleService } from "./services/event-availaible-service";
       envFilePath: ".env", // loads apps/gt-service/.env
     }),
   ],
-  controllers: [ReserveBookingController, EventAvailaibleController],
-  providers: [ReserveBookingService, EventAvailaibleService],
+  controllers: [
+    ReserveBookingController,
+    EventAvailaibleController,
+    ConfirmBookingController,
+  ],
+  providers: [
+    ReserveBookingService,
+    EventAvailaibleService,
+    ConfirmBookingService,
+  ],
 })
 export class AppModule {}

@@ -123,10 +123,10 @@ export class CreateBookingController {
           HttpStatus.BAD_REQUEST
         );
       }
-      console.log(":::::requestedCount:::::", requestedCount);
-      console.log(":::::event:::::", event);
-      console.log(":::::dateEntry:::::", dateEntry);
-      console.log(":::::available:::::", available);
+      // console.log(":::::requestedCount:::::", requestedCount);
+      // console.log(":::::event:::::", event);
+      // console.log(":::::dateEntry:::::", dateEntry);
+      // console.log(":::::available:::::", available);
     });
 
     //End of ticket count

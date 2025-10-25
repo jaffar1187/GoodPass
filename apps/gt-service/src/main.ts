@@ -12,8 +12,8 @@ async function bootstrap() {
   let host = "127.0.0.1";
   let port = 4000;
   if (env === "PRODUCTION") {
-    host = configService.get<string>("HOST") || "127.0.0.1";
-    port = configService.get<number>("PORT") || 4000;
+    host = "0.0.0.0";
+    port = configService.get<number>("GT_SERVICE_PORT") || 4000;
   }
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(

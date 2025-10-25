@@ -14,7 +14,7 @@ export class WebhookService {
     );
   }
 
-  processWebhook(req: any) {
+  async processWebhook(req: any) {
     const sig = req.headers["stripe-signature"];
     let event;
 
