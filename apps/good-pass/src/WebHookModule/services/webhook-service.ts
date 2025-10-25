@@ -10,7 +10,10 @@ export class WebhookService {
 
     // Example processing
     if (body.type === "payment.succeeded") {
-      console.log("✅ Payment succeeded for:", body.type);
+      console.log(
+        `✅ Payment succeeded for: ${body.type}`,
+        JSON.stringify(body, null, 2)
+      );
     }
 
     return {
