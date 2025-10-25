@@ -9,7 +9,7 @@ async function runServer() {
   const app = await NestFactory.create(AppModule);
 
   // Equivalent of express.raw() for /webhook
-  // app.use("/webhook", bodyParser.raw({ type: "application/json" }));
+  app.use("/webhook", bodyParser.raw({ type: "application/json" }));
 
   //Strict Validation for query and body
   app.useGlobalPipes(
