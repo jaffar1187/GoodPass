@@ -6,7 +6,7 @@ export class WebhookService {
   constructor(private readonly configService: ConfigService) {}
 
   async processWebhook(body: any) {
-    console.log("📦 Payload:", JSON.stringify(body, null, 2));
+    console.log("📦 Payload:", body);
 
     // Example processing
     if (body.type === "payment.succeeded") {
