@@ -8,6 +8,7 @@ export class ConfirmBookingController {
 
   @MessagePattern({ cmd: "confirm_booking" })
   async confirmBooking(data: any) {
+    console.log("::::confirm_booking_data_recieved-ref::::", data);
     return await this.confirmBookingService.confirmBooking(data);
   }
 }
