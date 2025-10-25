@@ -1,19 +1,32 @@
-import { Controller, Post, Req, Res, HttpStatus } from "@nestjs/common";
+import {
+  Controller,
+  Post,
+  Body,
+  HttpException,
+  HttpStatus,
+} from "@nestjs/common";
 import { WebhookService } from "../services/webhook-service";
-import { Request, Response } from "express";
 
 @Controller("webhook")
 export class WebhookController {
   constructor(private readonly webhookService: WebhookService) {}
 
   @Post()
-  async handleWebhook(@Req() req: Request, @Res() res: Response) {
+  async handleWebhook(@Body() body: any) {
     try {
-      const result = await this.webhookService.processWebhook(req);
-      return res.status(HttpStatus.OK).json(result);
+      const result = await this.webhookService.processWebhook(body);
+      return {
+        statusCode: HttpStatus.OK,
+        success: true,
+        message: "Webhook processed successfully",
+        data: result,
+      };
     } catch (err: any) {
-      console.error("Webhook error:", err.message);
-      return res.status(HttpStatus.BAD_REQUEST).json({ error: err.message });
+      console.error("❌ Webhook error:", err.message);
+      throw new HttpException(
+        { success: false, message: err.message },
+        HttpStatus.BAD_REQUEST
+      );
     }
   }
 }
