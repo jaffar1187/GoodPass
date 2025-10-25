@@ -31,7 +31,7 @@ export class WebhookService {
     let session = null;
     if (event.type === "checkout.session.completed") {
       session = event.data.object;
-      console.log("✅ Payment succeeded:", session.metadata);
+      console.log("✅ Payment succeeded:", session);
     }
 
     return { received: true, session };
