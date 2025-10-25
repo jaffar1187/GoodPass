@@ -22,7 +22,7 @@ async function runServer() {
   );
 
   // For signature verification adding extra step.
-  app.use("/webhook", bodyParser.raw({ type: "application/json" }));
+  // app.use("/webhook", bodyParser.raw({ type: "application/json" }));
 
   // Equivalent of express.json() for other routes.
   app.use(bodyParser.json());

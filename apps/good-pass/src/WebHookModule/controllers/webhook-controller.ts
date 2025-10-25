@@ -4,6 +4,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UsePipes,
 } from "@nestjs/common";
 import { WebhookService } from "../services/webhook-service";
 
@@ -12,7 +13,8 @@ export class WebhookController {
   constructor(private readonly webhookService: WebhookService) {}
 
   @Post()
-  async handleWebhook(body: any) {
+  @UsePipes()
+  async handleWebhook(@Body() body: any) {
     console.log("📩 Webhook received....");
     try {
       const result = await this.webhookService.processWebhook(body);
