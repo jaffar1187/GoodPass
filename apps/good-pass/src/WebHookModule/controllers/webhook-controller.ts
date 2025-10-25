@@ -48,7 +48,9 @@ export class WebhookController {
       }
 
       // ✅ Forward enriched payload to service
-      const result = await this.webhookService.processWebhook(body);
+      const result = await this.webhookService.processWebhook({
+        referenceNumber: body.cachedReference,
+      });
 
       console.log("::::Confirm-booking-data:::", result);
 
