@@ -8,8 +8,8 @@ export class ConfirmBookingService {
   async confirmBooking(bookingData: any): Promise<any> {
     const token = this.configService.get<string>("GT_SERVICE_TOKEN");
     console.log(
-      "📦 Received confirm_booking data from good-pass:",
-      bookingData
+      "📦 Received confirm_booking data:",
+      JSON.stringify(bookingData, null, 2)
     );
 
     // 4️⃣ Send API call
