@@ -9,18 +9,21 @@ import {
 } from "@nestjs/common";
 import * as fs from "fs";
 import * as path from "path";
+import { setCache } from "./../../common/redis"; // ✅ Redis helper
 
 import { MakePaymentService } from "../services/make-payment-service";
 import { MakePaymentDto } from "../dto/make-payment-dto";
 import { GtClientService } from "./../services/gt-client-reserve-booking-service";
 import { RetrieveBookingDetailsService } from "./../services/retrieve-booking-details-service";
+import { ConfigService } from "@nestjs/config";
 
 @Controller("api")
 export class MakePaymentController {
   constructor(
     private readonly makePaymentService: MakePaymentService,
     private readonly gtClientService: GtClientService,
-    private readonly retrieveBookingDetailsService: RetrieveBookingDetailsService
+    private readonly retrieveBookingDetailsService: RetrieveBookingDetailsService,
+    private readonly configService: ConfigService
   ) {}
 
   @Post("makePayment")
@@ -42,6 +45,7 @@ export class MakePaymentController {
       token = token.slice(7).trim(); // remove “Bearer ”
     }
 
+    // ✅ Step 1: Create payment
     const data = await this.makePaymentService.makePayment(
       orderCode,
       successUrl,
@@ -49,12 +53,14 @@ export class MakePaymentController {
       token
     );
 
+    // ✅ Step 2: Retrieve booking details
     const bookingDetails =
       await this.retrieveBookingDetailsService.retrieveBookingDetails(
         orderCode,
         token
       );
 
+    // ✅ Step 3: Read mapping file (gp-gt-ids.json)
     const configPath = path.join(
       process.cwd(),
       "apps/good-pass/src/utils/gp-gt-ids.json"
@@ -80,11 +86,12 @@ export class MakePaymentController {
       (item: any) => item.ticketId
     );
 
-    // ✅ Step 2: filter your items array based on those IDs
+    // ✅ Step 4: Filter matching ticket items
     const filteredTtid = ttid.items.filter((item: any) =>
       ticketKeys.includes(item.itemId)
     );
 
+    // ✅ Step 5: Build ticketTypes for GlobalTix API
     const ticketTypes = bookingDetails.items[0].ticketItems.map(
       (item: any, index: number) => {
         return {
@@ -95,8 +102,7 @@ export class MakePaymentController {
       }
     );
 
-    // console.log(":::::ticketTypes::::::", ticketTypes);
-
+    // ✅ Step 6: Reserve booking with GT service
     const reserveBooking = await this.gtClientService.reserveBooking({
       ticketTypes: ticketTypes,
       customerName: bookingDetails.name,
@@ -104,6 +110,19 @@ export class MakePaymentController {
       paymentMethod: "CREDIT",
     });
 
+    // ✅ Step 7: Store mapping in Redis (orderCode → referenceNumber)
+    const referenceNumber =
+      reserveBooking?.received?.data?.referenceNumber ||
+      reserveBooking?.data?.referenceNumber;
+
+    if (referenceNumber && orderCode) {
+      await setCache(orderCode, referenceNumber, 3600);
+      console.log(`🧠 Cached: ${orderCode} → ${referenceNumber} (TTL: 1 hour)`);
+    } else {
+      console.warn("⚠️ Missing orderCode or referenceNumber, cache skipped");
+    }
+
+    // ✅ Step 8: Return full response
     return {
       data,
       reserveBooking,
